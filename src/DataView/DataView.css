@@ -1,0 +1,80 @@
+.dataview-container {
+  /* height: 100%; */
+  display: flex;
+  flex-direction:row;
+  width: 100%;
+  padding: 20px 30px;
+  align-items: center;
+  background: rgb(224, 224, 224);
+}
+.long {
+  position: absolute;
+  background: black;
+  height: 250px;
+  width: 2px;
+  top: 30px;
+  left: 15px;
+}
+.iframe {
+  width: 40%;
+  height: 100%;
+}
+.iframe iframe,
+.iframe div {
+  height: 100%;
+  width: 100%;
+}
+.analytics {
+  /* width: 60%; */
+  height: 100%;
+  padding: 0 px;
+  position: relative;
+}
+.title div {
+  height: 5vh;
+  width: 5vh;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1365px-Facebook_f_logo_%282019%29.svg.png");
+  border-radius: 50%;
+  background-size: cover;
+  margin-right: 1vw;
+}
+.title {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4vh;
+}
+.stats {
+  display: flex;
+}
+
+.masResultados {
+  background: rgb(219, 0, 0);
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 15px;
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.modal {
+  height: 70vh;
+  width: 40vw;
+  transform: translateX(100%);
+  background: white;
+  box-shadow: 0 0 4px grey;
+  border-radius: 10px;
+  position: fixed;
+  right: 0;
+  transition: all 0.3s linear;
+  top: 20%;
+}
+
+.pop {
+  transform: translateX(0%);
+}

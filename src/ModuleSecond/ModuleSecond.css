@@ -1,0 +1,43 @@
+.moduleSecond-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 15vh 0;
+}
+.moduleSecond-container h1 {
+  font-size: 40px;
+  color: rgb(73, 73, 73);
+  letter-spacing: 3px;
+}
+.pred label {
+  font-size: 30px;
+  margin-right: 1vw;
+}
+.pred input {
+  height: 6vh;
+  font-size: 25px;
+  width: 30vw;
+}
+.predict {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: red;
+  font-size: 30px;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+.prediction {
+  height: 20vh;
+  width: 40%;
+
+  background: white;
+}
+.prediction p {
+  font-size: 60px;
+  text-align: center;
+  justify-content: center;
+}

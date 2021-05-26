@@ -1,0 +1,51 @@
+.stat-container {
+  background: white;
+  box-shadow: 2px 2px 5px grey;
+  padding: 4px 8px;
+  letter-spacing: 2px;
+  height: fit-content;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+  position: relative;
+}
+.red {
+  background: rgb(224, 0, 0);
+  width: 90px;
+  display: flex;
+  left: 35px;
+  flex-direction: column;
+  justify-content: center;
+}
+.stat-module {
+  display: flex;
+  height: 30px;
+  margin-bottom: 8px;
+  width: 100%;
+
+  justify-content: space-evenly;
+}
+
+.stat-module div {
+  height: 30px;
+  width: 30px;
+
+  background-size: cover;
+  border-radius: 50%;
+}
+.stat-module p {
+  background: grey;
+  color: white;
+  text-align: center;
+  padding-top: 4px;
+  width: 50%;
+  border-radius: 15px;
+}
+
+.black {
+  position: absolute;
+  width: 20px;
+  left: -20px;
+
+  height: 2px;
+  background: black;
+}

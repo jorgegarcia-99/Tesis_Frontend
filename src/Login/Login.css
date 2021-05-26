@@ -1,0 +1,83 @@
+.login-container {
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.login-box {
+  height: 40vh;
+  width: 30vw;
+  background: rgb(252, 252, 252);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-between;
+  padding: 12vh 60px 10px 60px;
+  border-radius: 10%;
+  box-shadow: 0px 2px 5px gray;
+}
+.login-box input {
+  height: 22%;
+  width: 100%;
+  background: rgb(190, 190, 190);
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 25px;
+  border-radius: 15px;
+  padding-left: 15px;
+  padding-top: 5px;
+}
+.login-box input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  font-size: 25px;
+
+  opacity: 1; /* Firefox */
+}
+.login-box button {
+  height: 22%;
+  color: white;
+  background: rgb(207, 0, 0);
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+  width: 60%;
+  outline: none;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+}
+.forgot-password {
+  height: 22%;
+  width: 100%;
+  cursor: pointer;
+  color: red;
+  padding: 0 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.login-logo {
+  height: 22vh;
+  width: 22vh;
+  position: absolute;
+  left: 50%;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/fc/UPC_logo_transparente.png");
+  top: 0;
+  background-size: contain;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgb(202, 200, 200);
+}
+
+.sweet-warning{
+  background-color: red;
+}
+
+.sweet-warning:not([disabled]):hover{
+  background-color: rgba(255, 0, 0, 0.726);
+}
