@@ -19,13 +19,15 @@ jobs:
     - name: Set up Node.js version
       uses: actions/setup-node@v1
       with:
-        node-version: '14.x'
+        node-version: '10.x'
 
     - name: npm install, build, and test
       run: |
         npm install
         npm run build --if-present
         npm run test --if-present
+      env:
+        CI: false
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
@@ -52,5 +54,5 @@ jobs:
       with:
         app-name: 'tp2frontend'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_22140a5f435b408aa976299c4528b5c9 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d27212038a2e40f0a48c47ba8fe7478d }}
         package: .
