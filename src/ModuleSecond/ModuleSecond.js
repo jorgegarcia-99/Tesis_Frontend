@@ -1,6 +1,7 @@
 import React from "react";
 import "./ModuleSecond.css";
 import Axios from "axios";
+import swal from 'sweetalert';
 
 export default class MainModule extends React.Component {
   
@@ -10,6 +11,7 @@ export default class MainModule extends React.Component {
     this.state = {
       text: "",
       result: "Ingresa texto",
+      loading: false
     }
   }
 
@@ -17,33 +19,48 @@ export default class MainModule extends React.Component {
 
     try{
       if(this.state.text == undefined || this.state.text.trim() == ''){
-        throw('El texto no puede estar vacío')
+        swal({
+          title: 'Error',
+          text: 'Ingrese un texto a predecir.',
+          icon: "error",
+          buttons: {confirm: {text: 'OK', className: 'sweet-warning'}}
+        });
+        throw 'El texto no puede estar vacío'
       }
+
+      this.setState({
+        loading: true
+      })
 
       const dataModelo = {
         texto: this.state.text
       }
 
-      const resModelo = await Axios.post('http://localhost:5000/demo', dataModelo, {timeout: 600000})
+      const resModelo = await Axios.post('https://tp2scrapyrt.azurewebsites.net/demo', dataModelo, {timeout: 600000})
       console.log(resModelo)
       if(resModelo.data == undefined){
-        throw('Ocurrió un error al analizar el texto.')
-        return
+        throw 'Ocurrió un error al analizar el texto.'
       }
 
       this.setState({
         text: resModelo.data.texto,
-        result: resModelo.data.resultado
+        result: resModelo.data.resultado,
+        loading: false
       })
 
     }catch(error){
+      swal({
+        title: 'Error',
+        text: 'Ingrese un texto a predecir',
+        icon: "error",
+        buttons: {confirm: {text: 'OK', className: 'sweet-warning'}}
+      });
       this.setState({
         text: "",
-        result: "Ingresa texto"
+        result: "Ingresa texto",
+        loading: false
       })
     }
-
-
 
   }
 
@@ -65,7 +82,8 @@ export default class MainModule extends React.Component {
       </div>
       <button onClick={this.analizeAsync} className="predict">Predecir</button>
       <div className="prediction">
-        <p>{this.state.result}</p>
+        <p>{(this.state.loading) ? <div>Cargando....</div>
+            :this.state.result}</p>
       </div>
     </div>
     )

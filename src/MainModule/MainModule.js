@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DataView from "../DataView/DataView";
 import "./MainModule.css";
 import Axios from "axios";
+import swal from 'sweetalert';
 
 const reactionsItems = {
   like: {
@@ -64,7 +65,13 @@ export default class MainModule extends React.Component {
     try {
 
       if(this.state.url == undefined || this.state.url.trim() == ''){
-        alert('La url no puede ser vacía')
+        //alert('La url no puede ser vacía')
+        swal({
+          title: 'Error',
+          text: 'No se ingresó una URL, por favor ingresarlo en el campo debido.',
+          icon: "error",
+          buttons: {confirm: {text: 'OK', className: 'sweet-warning'}}
+        });
         this.setState({
           reactions: reactionsItems,
           comments:[],
@@ -74,8 +81,8 @@ export default class MainModule extends React.Component {
           comment_negative: 0,
           comment_neutral: 0
         })
-        return 
-        // throw('La url no puede ser vacía')
+        return
+        // throw 'La url no puede ser vacía'
       }
 
       const dataPosts = {
@@ -83,12 +90,18 @@ export default class MainModule extends React.Component {
       }
       
       // Get Posts
-      const resPosts = await Axios.post('http://localhost:5000/scrape', dataPosts, {timeout: 600000})
+      const resPosts = await Axios.post('https://tp2scrapyrt.azurewebsites.net/scrape', dataPosts, {timeout: 600000})
       console.log(resPosts.data)
       if(resPosts.data == undefined || resPosts.data.errors != undefined){
         // alert('Ocurrió un error al cargar los posts.')
-        throw('Ocurrió un error al cargar los posts.')
-        // return
+        //alert('Ocurrió un error al cargar los posts.')
+        // swal({
+        //   title: 'Error',
+        //   text: 'Ocurrió un error al cargar los posts.',
+        //   icon: "error",
+        //   buttons: {confirm: {text: 'OK', className: 'sweet-warning'}}
+        // });
+        throw 'Error'
       }
 
       // Process posts
@@ -108,6 +121,15 @@ export default class MainModule extends React.Component {
       // Process comments
       let newComments = resPosts.data.comments
 
+      // if(newComments.length === 0){
+      //   swal({
+      //     title: 'Error',
+      //     text: 'Ocurrió un error al cargar los posts.',
+      //     icon: "error",
+      //     buttons: {confirm: {text: 'OK', className: 'sweet-warning'}}
+      //   });
+      // }
+
       this.setState({
         reactions: current,
         shares: newShares,
@@ -120,9 +142,22 @@ export default class MainModule extends React.Component {
 
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al cargar los posts.')
+      swal({
+        title: 'Error',
+        text: 'Su URL no es válida.',
+        icon: "error",
+        buttons: {confirm: {text: 'OK', className: 'sweet-warning'}}
+      });
+      let current = this.state.reactions
+      current.like.value = "0"
+      current.love.value = "0"
+      current.laugh.value = "0"
+      current.mad.value = "0"
+      current.heart.value = "0"
+      current.wow.value = "0"
+      current.sad.value = "0"
       this.setState({
-        reactions: reactionsItems,
+        reactions: current,
         comments:[],
         shares:0,
         loading:false,
@@ -168,19 +203,33 @@ export default class MainModule extends React.Component {
                 <option value="matricula">Matrícula</option>
                 <option value="deportes">Deportes</option>
               </select>
-            </div>
+            </div> */}
+            <button className="main-button" onClick={this.analizeAsync}>Analizar</button>
             <button
               onClick={() => {
+                let current = this.state.reactions
+                current.like.value = "0"
+                current.love.value = "0"
+                current.laugh.value = "0"
+                current.mad.value = "0"
+                current.heart.value = "0"
+                current.wow.value = "0"
+                current.sad.value = "0"
                 this.setState({
                   url:"",
-                  option: ""
+                  reactions: current,
+                  comments:[],
+                  shares:0,
+                  loading:false,
+                  comment_positive: 0,
+                  comment_negative: 0,
+                  comment_neutral: 0
                 })
               }}
-              className="limpiar"
+              className="main-button"
             >
               Limpiar
-            </button> */}
-            <button className="main-button" onClick={this.analizeAsync}>Analizar</button>
+            </button>
             </div>
           </div>
         </div>
