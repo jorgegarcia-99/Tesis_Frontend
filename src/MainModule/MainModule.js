@@ -90,7 +90,7 @@ export default class MainModule extends React.Component {
       }
       
       // Get Posts
-      const resPosts = await Axios.post('https://tp2scrapyrt.azurewebsites.net/scrape', dataPosts, {timeout: 600000})
+      const resPosts = await Axios.post('https://tp2backend.azurewebsites.net/scrape', dataPosts, {timeout: 600000})
       console.log(resPosts.data)
       if(resPosts.data == undefined || resPosts.data.errors != undefined){
         // alert('Ocurrió un error al cargar los posts.')

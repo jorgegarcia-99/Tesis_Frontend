@@ -36,7 +36,7 @@ export default class MainModule extends React.Component {
         texto: this.state.text
       }
 
-      const resModelo = await Axios.post('https://tp2scrapyrt.azurewebsites.net/demo', dataModelo, {timeout: 600000})
+      const resModelo = await Axios.post('https://tp2backend.azurewebsites.net/demo', dataModelo, {timeout: 600000})
       console.log(resModelo)
       if(resModelo.data == undefined){
         throw 'Ocurrió un error al analizar el texto.'
