@@ -3,6 +3,16 @@ import DataView from "../DataView/DataView";
 import "./MainModule.css";
 import Axios from "axios";
 import swal from 'sweetalert';
+import { css } from "@emotion/react";
+import DotLoader from "react-spinners/DotLoader";
+
+const override = css`
+  display: flex;
+  margin: auto;
+  flex-direction: row;
+  border-color: red;
+  align-items: center;
+`;
 
 const reactionsItems = {
   like: {
@@ -90,7 +100,7 @@ export default class MainModule extends React.Component {
       }
       
       // Get Posts
-      const resPosts = await Axios.post('https://tp2backend.azurewebsites.net/scrape', dataPosts, {timeout: 600000})
+      const resPosts = await Axios.post('https://tp2-backend.azurewebsites.net/scrape', dataPosts, {timeout: 600000})
       console.log(resPosts.data)
       if(resPosts.data == undefined || resPosts.data.errors != undefined){
         // alert('Ocurrió un error al cargar los posts.')
@@ -235,7 +245,7 @@ export default class MainModule extends React.Component {
         </div>
         <div className="main-data">
           {
-          (this.state.loading) ? <div>Cargando datos....</div>
+          (this.state.loading) ? <DotLoader color={"white"} loading={this.state.loading} css={override} size={60}/>
             : <DataView 
                 data={this.state.reactions} 
                 comments={this.state.comments}

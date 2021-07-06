@@ -2,6 +2,14 @@ import React from "react";
 import "./ModuleSecond.css";
 import Axios from "axios";
 import swal from 'sweetalert';
+import { css } from "@emotion/react";
+import SyncLoader from "react-spinners/SyncLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 export default class MainModule extends React.Component {
   
@@ -36,7 +44,7 @@ export default class MainModule extends React.Component {
         texto: this.state.text
       }
 
-      const resModelo = await Axios.post('https://tp2backend.azurewebsites.net/demo', dataModelo, {timeout: 600000})
+      const resModelo = await Axios.post('https://tp2-backend.azurewebsites.net/demo', dataModelo, {timeout: 600000})
       console.log(resModelo)
       if(resModelo.data == undefined){
         throw 'Ocurrió un error al analizar el texto.'
@@ -82,7 +90,7 @@ export default class MainModule extends React.Component {
       </div>
       <button onClick={this.analizeAsync} className="predict">Predecir</button>
       <div className="prediction">
-        <p>{(this.state.loading) ? <div>Cargando....</div>
+        <p>{(this.state.loading) ? <SyncLoader color={"red"} loading={this.state.loading} css={override} size={20} margin={2} />
             :this.state.result}</p>
       </div>
     </div>
